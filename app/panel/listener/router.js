@@ -86,9 +86,12 @@ define((require, exports, module) => {
         })
       }
       if (content.evolution) {
-        store.commit('evolution/updateEvolution', {
-          updateData: content.evolution
-        })
+        if (Object.keys(content.evolution).length > 0) {
+          let EvoCont = content.evolution.back
+          store.commit('evolution/updateEvolution', {
+            updateData: {back: {0: {serial_id: EvoCont.serial_id, finished_at: EvoCont.finished_at}}}
+          })
+        }
       }
       if (content.equip) {
         _.each(content.equip, (v, k) => {

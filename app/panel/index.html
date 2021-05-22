@@ -18,7 +18,7 @@
     </div>
     <div class="main-content">
       <div class="party-buttons">
-        <div v-for="i in 4" :key="i" class="party-button hover" :class="config.partySelected==i ? 'selected':'' + party.parties[i].status==2 ? ' conquest':''" @click="config.partySelected=i">{{i}}</div>
+        <div v-if="party.parties[i]" v-for="i in 4" :key="i" class="party-button hover" :class="config.partySelected==i ? 'selected':'' + party.parties[i].status==2 ? ' conquest':''" @click="config.partySelected=i">{{i}}</div>
       </div>
       <div>
         <div v-if="config.partySelected==2" style="height: 400px;">
@@ -114,7 +114,7 @@
         <div class="resource-element"><span class="fake-title" style="float:left;" data-msg="Coolant"><img src="src=../../../../static/resource/coolant.png" class="resource-icon" alt="Coolant"></span><span class="resource-text">{{resource.coolant}}</span></div>
         <div class="resource-element"><span class="fake-title" style="float:left;" data-msg="Whetstone"><img src="src=../../../../static/resource/file.png" class="resource-icon" alt="Whetstone"></span><span class="resource-text">{{resource.file}}</span></div>
         <div class="resource-element"><span class="fake-title" style="float:left;" data-msg="Req. Token"><img src="src=../../../../static/resource/bill.png" class="resource-icon" alt="Req. Token"></span><span class="resource-text">{{resource.bill}}</span></div>
-        <div class="resource-element"><span class="fake-title" style="float:left;" data-msg="Help Token"><img src="src=../../../../static/resource/item_8.png" class="resource-icon" alt="Help Token"></span><span class="resource-text">{{item.consumable['8'] && item.consumable['8']['num']}}</span></div>
+        <div class="resource-element"><span class="fake-title" style="float:left;" data-msg="Help Token"><img src="src=../../../../static/resource/item_8.png" class="resource-icon" alt="Help Token"></span><span class="resource-text">{{item.consumable['8'] && item.consumable['8']['num'] || '-'}}</span></div>
         <div class="resource-element"><span class="fake-title" style="float:left;" data-msg="Koban"><img src="src=../../../../static/resource/money.png" class="resource-icon" alt="Koban"></span><span class="resource-text fake-title" :data-msg="'Opened: '+(resource.money+item.consumable['13']['num']*200+item.consumable['14']['num']*400+item.consumable['15']['num']*700)">{{resource.money}}</span></div>
       </div>
     

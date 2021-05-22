@@ -14,7 +14,6 @@ define((require, exports, module) => {
             }else{
               slot.isIntervalSet = true
               slot.left_time = moment.utc(slot.finished_at-Date.now()).format('HH:mm:ss')
-              //console.log("fin:",moment.utc(slot.finished_at),"now:",moment.utc(Date.now()))
               if(moment(parseValues(slot.finished_at)).isBefore(Date.now())){
                 slot.left_time = '00:00:00'
                 if(slot.isNoticed == false || slot.isNoticed == null){
