@@ -61,6 +61,16 @@ define((require, exports, module) => {
     computed: Vuex.mapState(['player','config'])
   })
 
+  Vue.component('notice-content', {
+    template: '#notice-template',
+    computed: Vuex.mapState(['notice']),
+    methods: {
+      close (n) {
+        n.hidden = true
+      }
+    }
+  })
+
   Vue.component('conquest-item', {
     template: '#conquest-item',
     props: ['party-no'],

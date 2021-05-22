@@ -10,12 +10,14 @@ define((require, exports, module) => {
     },
     mutations: {
       updateNotice (state, payload) {
+        console.log("updateNotice")
         if (!payload._id) return
         Vue.set(state.history, payload._id, payload)
       }
     },
     actions: {
       addNotice (context, payload) {
+        console.log("addNotice")
         if (!payload._id) {
           payload._id = ++context.state.count
         }

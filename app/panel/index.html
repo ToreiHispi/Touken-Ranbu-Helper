@@ -38,6 +38,7 @@
         </div>
       </div>
     </div>
+    <notice-content></notice-content>
     <div class="check-data" v-if="(!_.every(dataLoaded)) || _.isEmpty(swords.serial)">
       <div class="check-title">Tohken Ranbu Helper · Initialization</div>
       <div class="check-item">
@@ -58,6 +59,24 @@
       </div>
     </div>
   </div>
+
+  <!-- Notice template -->
+	<script id="notice-template" type="text/template">
+    <div id="notice">
+      <transition-group name="notice-block-list" tag="div">
+      <div class="notice-block" v-for="n in notice.history" v-if="!n.hidden" :key="n._id" @click="close(n)">
+        <div class="notice-image">
+        <img :src="n.swordBaseId | sword-pattern" alt="空" />
+        </div>
+        <div class="notice-content">
+        <div class="notice-title" v-html="n.title"></div>
+        <div class="notice-message" v-html="n.message"></div>
+        <div class="notice-context" v-html="n.context"></div>
+        </div>
+      </div>
+      </transition-group>
+    </div>
+    </script>
 
   <script id="player" type="text/template">
     <div class="player">
@@ -207,7 +226,7 @@
       </div>
       <div style="padding-left:8px;width=110px;padding-top:8px;">
         <div v-if="battle.result.get_sword_id" style="font-size:10px;">
-          Drop：<span class="fake-title" :data-msg="battle.result.get_sword_id | sword-name"><img :src="battle.result.get_sword_id | sword-pattern" :alt="battle.result.get_sword_id" class="small-pattern"></span>
+          Drop：<span class="fake-title" :data-msg="battle.result.get_sword_id | sword-name | convert-sword-name"><img :src="battle.result.get_sword_id | sword-pattern" :alt="battle.result.get_sword_id" class="small-pattern"></span>
         </div>
         <div v-else-if="battle.result.drop_reward.length>0" style="font-size:10px;">
           Drop：<span class="fake-title" :data-msg="battle.result.drop_reward[0].item_id | item-name-format"><img :src="'item'+battle.result.drop_reward[0].item_id | sword-pattern" :alt="battle.result.drop_reward[0].item_id" class="small-pattern"></span>
