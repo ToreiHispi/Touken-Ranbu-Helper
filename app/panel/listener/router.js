@@ -449,6 +449,17 @@ define((require, exports, module) => {
         activityShow: 'default'
       })
     }
+
+    static ['home/leave'] (content) {
+      let EvoCont = content.evolution.back
+      store.commit('evolution/updateEvolution', {
+        updateData: {back: {0: {serial_id: EvoCont.serial_id, finished_at: EvoCont.finished_at}}}
+      })
+    }
+    
+    static ['home/back'] (content) {
+      //Called when sword returns from Kiwame
+    }
     
     static ['sally/sally'] (content) {
       store.commit('inBattle')
@@ -615,6 +626,11 @@ define((require, exports, module) => {
     static ['login/start'] (content) {
       store.commit('player/updatePlayer', {
         updateData: _.pick(content, ['name', 'level'])
+      })
+
+      let EvoCont = content.evolution.back
+      store.commit('evolution/updateEvolution', {
+        updateData: {back: {0: {serial_id: EvoCont.serial_id, finished_at: EvoCont.finished_at}}}
       })
     }
 

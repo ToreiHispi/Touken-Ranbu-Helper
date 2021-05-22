@@ -158,10 +158,10 @@
         <div><span v-if="duty.status==2" class="fake-title" :data-msg="duty.finished_at | hhmmss">{{duty.left_time}}</span><span v-else> --:--:-- </span></div>
       </div>
       <div class="evolution">
-        <div class="fake-titlek" :data-msg="evolution.back.serial_id | sword-serial-name | convert-sword-name">
-          <img :src="evolution.back.serial_id | sword-serial-swordid | sword-pattern" class="medium-pattern" style="border: 1px solid #947e9e;">
+        <div class="fake-titlek" :data-msg="evolution.back[0].serial_id | sword-serial-name | convert-sword-name">
+          <img :src="evolution.back[0].serial_id | sword-serial-swordid | sword-pattern" class="medium-pattern" style="border: 1px solid #947e9e;">
         </div>
-        <div v-if="evolution.back.finished_at"><span v-if="evolution.back.finished_at>=Date.now()">{{evolution.back.finished_at | MMDDhhmmss}}</span><span v-else>Completed</span></div>
+        <div v-if="evolution.back[0].finished_at"><span v-if="evolution.back[0].finished_at>=Date.now()">{{evolution.back.finished_at | MMDDhhmmss}}</span><span v-else>Completed</span></div>
         <div v-else> --/-- <br> --:--:-- </div>
       </div>
     </div>
@@ -243,6 +243,8 @@
       <div style="text-align:center; padding:2px; font-size:10px; color:red;">This is a tentative module.<br>The display in subsequent versions may be different.</div>
       <div class="title"><small>Player Settings</small></div>
       <div class="setNotice" style="text-align:center;padding: 1px;">
+        <div>Sortie Notification： <config-switch attr="hurt_notice" /></div>
+        <div>Drop Notification： <config-switch attr="rare_sword_notice" /></div>
         <div>Exped Notification： <config-switch attr="conquest_notice" /></div>
         <div>IA Notification： <config-switch attr="duty_notice" /></div>
         <div>Forge Notification： <config-switch attr="forge_notice" /></div>
