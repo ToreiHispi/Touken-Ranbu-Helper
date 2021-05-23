@@ -1,5 +1,6 @@
 define((require, exports, module) => {
   let TRHMasterData = require('app/core/master')
+  let TRH = require('app/core/const/index')
   return (store) => {
     store.subscribe((mutation, state) => {
       if (mutation.type === 'forge/updateForge'){
@@ -7,8 +8,7 @@ define((require, exports, module) => {
         let slot = _.get(state, ['forge', 'slot', slotNo])
         let getSwordId = mutation.payload.updateData.sword_id
         let time = moment(parseValues(mutation.payload.updateData.finished_at))
-        let swordName = '尚未获取'
-        swordName = _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], '尚未获取')
+        let swordName = _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], '') == '' ? 'Not yet obtained' : (TRH.SwordENGName[String(getSwordId)] ? TRH.SwordENGName[String(getSwordId)]['full'] : _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], 'None'))
         let logId = `${slotNo}#${time.unix()}`
         store.commit('log/addForgeLog', {
           logId,
@@ -27,9 +27,19 @@ define((require, exports, module) => {
                   if(getSwordId && getSwordId!='unknown'){
                     if(state.config.forge_notice == true){
                       store.dispatch('notice/addNotice', {
-                        title: `锻刀剧透： ${swordName}`,
-                        message: `结束时间：${time.format('HH:mm:ss')}`,
-                        context: time.isBefore() ? '已经结束了呦！' : '请耐心等待哟（或者拍个加速？）',
+                        title: `Forge Result: ${swordName}`,
+                        message: `End Time: ${time.format('HH:mm:ss')}`,
+                        context: time.isBefore() ? "It's done!" : 'Please wait patiently or use a Help Token.',
+                        tag: getSwordId,
+                        renotify: true,
+                        swordBaseId: getSwordId,
+                        icon: `static/sword/${getSwordId}.png`
+                      })
+                    } else {
+                      store.dispatch('notice/addNotice', {
+                        title: `Forging New Sword`,
+                        message: `End Time： ${time.format('HH:mm:ss')}`,
+                        context: 'You need to re-enter the Forge to see the sword prediction.',
                         tag: getSwordId,
                         renotify: true,
                         swordBaseId: getSwordId,

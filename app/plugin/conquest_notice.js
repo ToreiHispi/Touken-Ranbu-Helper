@@ -3,7 +3,8 @@ define((require, exports, module) => {
     store.subscribe((mutation, state) => {
       // {
         if (mutation.type === 'party/updateParty') {
-          let party_name = mutation.payload.updateData.party_name
+          let party_nameJPN = mutation.payload.updateData.party_name
+          let party_name = party_nameJPN.replace('第','Team ').replace('部隊','')
           let status = mutation.payload.updateData.status
           
           let party = _.get(state, ['party', 'parties', mutation.payload.updateData.party_no])
@@ -19,16 +20,16 @@ define((require, exports, module) => {
                 if(party.isNoticed == false || party.isNoticed == null){
                   if (state.config.conquest_notice == true){
                     store.dispatch('notice/addNotice', {
-                      title: `${party_name} has completed Expedition！`,
+                      title: `${party_name} has returned！`,
                       message: `End Time：${moment(parseValues(finished_at)).format('HH:mm:ss')}`,
-                      context: 'Please collect spoils ASAP！',
+                      context: 'Return to Honamru to collect resources！',
                       renotify: false,
                       disableAutoClose: true,
                       swordBaseId: state.swords.serial[state.party.parties[party.party_no].slot[1].serial_id].sword_id,
                       icon: `static/sword/${state.swords.serial[state.party.parties[party.party_no].slot[1].serial_id].sword_id}.png`
                     })
                   }
-                  party.isNoticed = false
+                  party.isNoticed = true
                 }
                 party.isIntervalSet = false
                 clearInterval(check)

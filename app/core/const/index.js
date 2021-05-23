@@ -8,6 +8,7 @@ define((require, exports, module) => {
     EquipENGName: require('./equip/name'),
     EquipENGType: require('./equip/type'),
     ItemENGName: require('./item/name'),
+    RareSword: require('./sword/rare'),
     FATIGUE: {
       STATUS: {
         NONE: 0,
@@ -16,7 +17,7 @@ define((require, exports, module) => {
       },
       VALUE: {
         VERY_TIERD: 9,
-        TIERD: 20,
+        TIERD: 19,
         NOMAL: 49,
         MAX: 100
       }

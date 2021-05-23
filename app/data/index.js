@@ -3,7 +3,7 @@ define((require, exports, module) => {
     PartyLevel: require('app/plugin/party_level'),
     RepairNotice: require('app/plugin/repair_notice'),
     ForgeNotice: require('app/plugin/forge_notice'),
-    HurtNotice: require('app/plugin/hurt_notice'),
+    //HurtNotice: require('app/plugin/hurt_notice'),
     RareSwordNotice: require('app/plugin/rare_sword_notice'),
     DutyNotice: require('app/plugin/duty_notice'),
     ConquestNotice: require('app/plugin/conquest_notice'),

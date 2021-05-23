@@ -531,28 +531,38 @@ define((require, exports, module) => {
       store.commit('battle/clearBattleEnemy')
     }
     static ['sally/eventforward'] (content) {
-      this['sally/forward'](content)
-      if(content.gimmick.draw){
-        //毒箭
-        if(content.gimmick.draw==19 || (content.gimmick.draw>=53 && content.gimmick.draw<=55) || (content.gimmick.draw>=241 && content.gimmick.draw<=243)){
-          _.each(content.gimmick.result.effect, (v, k)=>{
-            store.commit('swords/updateSword',{
-              serialId: v.serial_id,
-              updateData: {hp: v.value[1]}
-            })
-          })
+      store.commit('sally/updateSally', {
+        updateData: {square_id: content.square_id}
+	    })
+	  
+      Object.keys(content).forEach(k => {
+        if (k=="gimmick") {
+          if(content.gimmick.draw){
+            //Poison Arrows
+            if(content.gimmick.draw==19 || (content.gimmick.draw>=53 && content.gimmick.draw<=55)){
+              _.each(content.gimmick.result.effect, (v, k)=>{
+                store.commit('swords/updateSword',{
+                  serialId: v.serial_id,
+                  updateData: {hp: v.value[1] || 1}
+                })
+              })
+            }
+            //Bombs
+            else if(content.gimmick.draw==20 || (content.gimmick.draw>=60 && content.gimmick.draw<=62)){
+              _.each(content.gimmick.result.serial_ids, (v, k)=>{
+                store.commit('equip/updateEquip',{
+                  serialId: v,
+                  updateData: {soldier: '0'}
+                })
+              })
+            }
+          }
         }
-        //炸弹
-        else if(content.gimmick.draw==20 || (content.gimmick.draw>=60 && content.gimmick.draw<=62) || (content.gimmick.draw>=201 && content.gimmick.draw<=203)){
-          _.each(content.gimmick.result.serial_ids, (v, k)=>{
-            store.commit('equip/updateEquip',{
-              serialId: v,
-              updateData: {soldier: '0'}
-            })
-          })
-        }
-      }
+      })
+      //runs sally/forward for Scouting and Node selection
+      this['sally/forward'] (content)
     }
+
     static ['forge/start'] (content) {
       store.commit('forge/updateForge', {
         slotNo: content.slot_no,
@@ -560,6 +570,7 @@ define((require, exports, module) => {
 
       })
     }
+    
     static ['forge/complete'] (content) {
       let forgeData = _.get(store, ['state', 'forge', 'slot', content.postData.slot_no], {})
       store.commit('forge/updateForge', {

@@ -1,5 +1,6 @@
 define((require, exports, module) => {
   let TRHMasterData = require('app/core/master')
+  let TRH = require('app/core/const/index')
   return (store) => {
     store.subscribe((mutation, state) => {
       if (state.config.rare_sword_notice == true) {
@@ -15,22 +16,49 @@ define((require, exports, module) => {
             console.log("not rare!")
             return
           }
-          let swordName = _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], '无')
+          let swordName = _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], 'None') == 'None' ? 0 : (TRH.SwordENGName[getSwordId] ? TRH.SwordENGName[getSwordId][getSwordId] : _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], '-'))
           console.log(swordName)
           let timeout = _.get(state, ['config', 'timeout'], 3)*1000
           if (timeout<3000){
             timeout = 3000
           }
           if (swordName){
-            store.dispatch('notice/addNotice', {
-              title: `发现稀有刀！`,
-              message: `恭喜！`,
-              context: `掉落：${swordName}！`,
-              renotify: true,
+            if (super_rare.indexOf(parseInt(getSwordId, 10)) > -1) {
+              store.dispatch('notice/addNotice', {
+              title: `Rare Sword Drop`,
+              message: `You got a super rare drop!`,
+              context: `Drop： ${swordName}！`,
+              renotify: false,
+              disableAutoClose: false,
               timeout: timeout,
               swordBaseId: getSwordId,
               icon: `static/sword/${getSwordId}.png`,
-            })
+              })
+            }
+            else if (rare.indexOf(parseInt(getSwordId, 10)) > -1) {
+              store.dispatch('notice/addNotice', {
+              title: `Rare Sword Drop`,
+              message: `You got a rare drop.`,
+              context: `Drop： ${swordName}！`,
+              renotify: false,
+              disableAutoClose: false,
+              timeout: timeout,
+              swordBaseId: getSwordId,
+              icon: `static/sword/${getSwordId}.png`,
+              })
+            }
+            else if (non_drops.indexOf(parseInt(getSwordId, 10)) > -1) {
+              store.dispatch('notice/addNotice', {
+              title: `Rare Sword Drop`,
+              message: `You got a special event drop!`,
+              context: `Drop： ${swordName}！`,
+              renotify: false,
+              disableAutoClose: true,
+              timeout: timeout,
+              swordBaseId: getSwordId,
+              icon: `static/sword/${getSwordId}.png`,
+              })
+            }
           }
         }
       }

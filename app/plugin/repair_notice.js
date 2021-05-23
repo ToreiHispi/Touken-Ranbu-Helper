@@ -1,4 +1,5 @@
 define((require, exports, module) => {
+  let TRH = require('app/core/const/index')
   return (store) => {
     store.subscribe((mutation, state) => {
       if (mutation.type === 'repair/updateRepair'){
@@ -6,6 +7,7 @@ define((require, exports, module) => {
         let slot = _.get(state, ['repair', 'slot', mutation.payload.updateData.slot_no])
         let swordSerialId = mutation.payload.updateData.sword_serial_id
         let sword = _.get(state, ['swords', 'serial', swordSerialId])
+        let swordName = (TRH.SwordENGName[sword.sword_id] ? TRH.SwordENGName[sword.sword_id][sword.sword_id] : sword.name)
         
         if(slot.isIntervalSet  == false || slot.isIntervalSet == null){
           let check = setInterval(function isRepairFinished(){
@@ -19,9 +21,9 @@ define((require, exports, module) => {
                 if(slot.isNoticed == false || slot.isNoticed == null){
                   if(state.config.repair_notice == true){
                     store.dispatch('notice/addNotice', {
-                      title: `手入刀剣：${sword.name} `,
-                      message: `结束时间：${moment(parseValues(mutation.payload.updateData.finished_at)).format('MM/DD HH:mm:ss')}`,
-                      context: moment(parseValues(mutation.payload.updateData.finished_at)).isBefore() ? '已经結束了呦！' : '请耐心等待哟（或者拍个加速？）',
+                      title: `Ongoing Repair：${swordName} `,
+                      message: `End Time: ${moment(parseValues(mutation.payload.updateData.finished_at)).format('MM/DD HH:mm:ss')}`,
+                      context: moment(parseValues(mutation.payload.updateData.finished_at)).isBefore() ? 'Finished！' : 'Please wait patiently or use a Help Token.',
                       tag: sword.sword_id,
                       renotify: true,
                       swordBaseId: sword.sword_id,

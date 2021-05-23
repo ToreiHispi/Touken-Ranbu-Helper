@@ -5,7 +5,7 @@ define((require, exports, module) => {
       conquest_notice: true,
       duty_notice: true,
       forge_notice: true,
-      hurt_notice: true,
+      hurt_notice: false,
       rare_sword_notice: true,
       repair_notice: true,
       evolution_notice: true,
