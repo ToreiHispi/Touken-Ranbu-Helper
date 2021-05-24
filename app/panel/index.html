@@ -95,7 +95,7 @@
     <div class="activity">
       <div class="activity-tabs">
         <router-link class="activity-tab hover" to='/basic'>Honmaru</router-link>
-        <router-link class="activity-tab hover" to='/battle'>Sortie</router-link>
+        <router-link class="activity-tab hover" to='/battle'>{{ 'Front Lines' | convert-en-name('Sortie') }}</router-link>
         <router-link class="activity-tab hover" to='/changes'>Other</router-link>
       </div>
       <div class="activity-content">
@@ -187,7 +187,7 @@
   <script id="battle" type="text/template">
     <div>
       <div class="sally-info">
-    Sortie Map：{{sally.episode_id>=0 ? '':'e'}}{{sally.episode_id || '-'}}-{{sally.field_id || '-'}}
+        {{ 'Front Lines' | convert-en-name('Sortie') }} Map：{{sally.episode_id>=0 ? '':'e'}}{{sally.episode_id || '-'}}-{{sally.field_id || '-'}}
       </div>
       <div class="map-info">
         <div style="float:left; width:50%;font-size:10px;">Layer：{{sally.layer_num || '-'}}</div>
@@ -243,10 +243,10 @@
       <div style="text-align:center; padding:2px; font-size:10px; color:red;">This is a tentative module.<br>The display in subsequent versions may be different.</div>
       <div class="title"><small>Player Settings</small></div>
       <div class="setNotice" style="text-align:center;padding: 1px;">
-        <!--div>Sortie Notification： <config-switch attr="hurt_notice" /></div-->
+        <!--div>{{ 'Front Lines' | convert-en-name('Sortie') }} Notification： <config-switch attr="hurt_notice" /></div-->
         <div>Drop Notification： <config-switch attr="rare_sword_notice" /></div>
-        <div>Exped Notification： <config-switch attr="conquest_notice" /></div>
-        <div>IA Notification： <config-switch attr="duty_notice" /></div>
+        <div>{{ 'Exped' | convert-en-name('Survey') }} Notification： <config-switch attr="conquest_notice" /></div>
+        <div>{{ 'IA' | convert-en-name('Duties') }} Notification： <config-switch attr="duty_notice" /></div>
         <div>Forge Notification： <config-switch attr="forge_notice" /></div>
         <div>Repair Notification： <config-switch attr="repair_notice" /></div>
         <div>Kiwame Notification： <config-switch attr="evolution_notice" /></div>
@@ -263,7 +263,7 @@
               <th>No.</th>
               <th>Sword</th>
               <th>Awaken</th>
-              <th>IA</th>
+              <th>{{ 'IA' | convert-en-name('Duties') }}</th>
             </tr>
           </thead>
           <tbody>
