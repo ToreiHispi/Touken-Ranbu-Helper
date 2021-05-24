@@ -21,8 +21,8 @@ define((require, exports, module) => {
                   if (state.config.conquest_notice == true){
                     store.dispatch('notice/addNotice', {
                       title: `${party_name} has returned！`,
-                      message: `End Time：${moment(parseValues(finished_at)).format('HH:mm:ss')}`,
-                      context: 'Return to Honamru to collect resources！',
+                      message: 'Return to Honmaru to collect resources！',
+                      context: `End Time：${moment(parseValues(finished_at)).format('HH:mm:ss')}`,
                       renotify: false,
                       disableAutoClose: true,
                       swordBaseId: state.swords.serial[state.party.parties[party.party_no].slot[1].serial_id].sword_id,

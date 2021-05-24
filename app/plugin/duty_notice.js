@@ -74,8 +74,8 @@ define((require, exports, module) => {
                 if (state.config.duty_notice == true) {
                 store.dispatch('notice/addNotice', {
                   title: 'Internal Affairs Ended',
-                  message: `End Time： ${moment(parseValues(finished_at)).format('HH:mm:ss')}`,
-                  context: 'Please re-assign duties as soon as possible!',
+                  message: 'Please re-assign duties as soon as possible!',
+                  context: `End Time： ${moment(parseValues(finished_at)).format('HH:mm:ss')}`,
                   renotify: true,
                   disableAutoClose: true,
                   swordBaseId: state.swords.serial[state.party.parties[1].slot[1].serial_id].sword_id,

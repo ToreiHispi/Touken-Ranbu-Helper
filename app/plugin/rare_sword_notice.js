@@ -26,8 +26,8 @@ define((require, exports, module) => {
             if (super_rare.indexOf(parseInt(getSwordId, 10)) > -1) {
               store.dispatch('notice/addNotice', {
               title: `Rare Sword Drop`,
-              message: `You got a super rare drop!`,
-              context: `Drop： ${swordName}！`,
+              message: `Drop： ${swordName}`,
+              context: `You got a super rare drop!`,
               renotify: false,
               disableAutoClose: false,
               timeout: timeout,
@@ -38,8 +38,8 @@ define((require, exports, module) => {
             else if (rare.indexOf(parseInt(getSwordId, 10)) > -1) {
               store.dispatch('notice/addNotice', {
               title: `Rare Sword Drop`,
-              message: `You got a rare drop.`,
-              context: `Drop： ${swordName}！`,
+              message: `Drop： ${swordName}`,
+              context: `You got a rare drop.`,
               renotify: false,
               disableAutoClose: false,
               timeout: timeout,
@@ -50,8 +50,8 @@ define((require, exports, module) => {
             else if (non_drops.indexOf(parseInt(getSwordId, 10)) > -1) {
               store.dispatch('notice/addNotice', {
               title: `Rare Sword Drop`,
-              message: `You got a special event drop!`,
-              context: `Drop： ${swordName}！`,
+              message: `Drop： ${swordName}`,
+              context: `You got a special event drop!!`,
               renotify: false,
               disableAutoClose: true,
               timeout: timeout,

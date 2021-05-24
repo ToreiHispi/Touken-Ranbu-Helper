@@ -28,8 +28,8 @@ define((require, exports, module) => {
                     if(state.config.forge_notice == true){
                       store.dispatch('notice/addNotice', {
                         title: `Forge Result: ${swordName}`,
-                        message: `End Time: ${time.format('HH:mm:ss')}`,
-                        context: time.isBefore() ? "It's done!" : 'Please wait patiently or use a Help Token.',
+                        message: time.isBefore() ? "It's done!" : 'Please wait patiently or use a Help Token.',
+                        context: `End Time: ${time.format('HH:mm:ss')}`,
                         tag: getSwordId,
                         renotify: true,
                         swordBaseId: getSwordId,
@@ -38,8 +38,8 @@ define((require, exports, module) => {
                     } else {
                       store.dispatch('notice/addNotice', {
                         title: `Forging New Sword`,
-                        message: `End Time： ${time.format('HH:mm:ss')}`,
-                        context: 'You need to re-enter the Forge to see the sword prediction.',
+                        message: 'You need to re-enter the Forge to see the sword prediction.',
+                        context: `End Time： ${time.format('HH:mm:ss')}`,
                         tag: getSwordId,
                         renotify: true,
                         swordBaseId: getSwordId,

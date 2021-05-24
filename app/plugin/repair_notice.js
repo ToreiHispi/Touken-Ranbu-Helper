@@ -22,8 +22,8 @@ define((require, exports, module) => {
                   if(state.config.repair_notice == true){
                     store.dispatch('notice/addNotice', {
                       title: `Ongoing Repair：${swordName} `,
-                      message: `End Time: ${moment(parseValues(mutation.payload.updateData.finished_at)).format('MM/DD HH:mm:ss')}`,
-                      context: moment(parseValues(mutation.payload.updateData.finished_at)).isBefore() ? 'Finished！' : 'Please wait patiently or use a Help Token.',
+                      message: moment(parseValues(mutation.payload.updateData.finished_at)).isBefore() ? 'Finished！' : 'Please wait patiently or use a Help Token.',
+                      context: `End Time: ${moment(parseValues(mutation.payload.updateData.finished_at)).format('MM/DD HH:mm:ss')}`,
                       tag: sword.sword_id,
                       renotify: true,
                       swordBaseId: sword.sword_id,

@@ -16,9 +16,9 @@ define((require, exports, module) => {
               if(finished_at != null) {
                 if(finished_at.isBefore(Date.now())){
                   store.dispatch('notice/addNotice', {
-                    title: `${sword_name}'s Kiwame Training has ended!`,
-                    message: `End Time： ${finished_at.format('HH:mm:ss')}`,
-                    context: 'Refresh the game to see his return!',
+                    title: `${sword_name}'s Kiwame Training has ended`,
+                    message: 'Return to Honmaru to see him return!',
+                    context: `End Time： ${finished_at.format('HH:mm:ss')}`,
                     renotify: true,
                     disableAutoClose: true,
                     swordBaseId: sword_id,
