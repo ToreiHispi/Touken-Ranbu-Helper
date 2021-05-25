@@ -14,7 +14,7 @@ define((require, exports, module) => {
             let check = setInterval(function isEvolutionFinished(){
               state.evolution.back[0].isIntervalSet = true
               if(finished_at != null) {
-                if(finished_at.isBefore(Date.now())){
+                if(finished_at.isAfter(Date.now())){
                   store.dispatch('notice/addNotice', {
                     title: `${sword_name}'s Kiwame Training has ended`,
                     message: 'Return to Honmaru to see him return!',
