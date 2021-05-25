@@ -83,9 +83,9 @@
       <div class="player-level hover" :style="{'filter': config.info_hide.user_level ? 'blur(5px)' : null}" @click="config.info_hide.user_level=!config.info_hide.user_level">
         <div class="player-level-text">Lv.&nbsp{{player.level || 0}}</div>
         <div class="player-level-box">
-          <div class="player-level-bar" :style="[{'height': 4+'px'},{'width': ((player.exp-player.prev_exp)/(player.next_exp-player.prev_exp))*100+'%'}]"></div>
+          <div class="player-level-bar" :style="[{'height': 4+'px'},{'width': ((player.exp-player.prev_exp)/(player.lvlup_exp-player.prev_exp))*100+'%'}]"></div>
         </div>
-        <div class="player-exp-next"> next {{player.next_exp-player.exp}}</div>
+        <div class="player-exp-next"> next {{player.lvlup_exp-player.exp}}</div>
       </div>
       <div class="player-name hover" :style="{'filter': config.info_hide.user_name ? 'blur(5px)' : null}" @click="config.info_hide.user_name=!config.info_hide.user_name">{{player.name || '-'}}</div>
       <div class="player-created-at hover" :style="{'filter': config.info_hide.created_at ? 'blur(5px)' : null}" @click="config.info_hide.created_at=!config.info_hide.created_at">Time in role: {{parseInt((Date.now() - player.created_at)/86400000) ||'-'}} Days</div>
@@ -312,7 +312,7 @@
         <div class="horse fake-title" :data-msg="sword.horse_serial_id | equip-serial-name | convert-equip-name | equip-name-format">{{ sword.horse_serial_id | equip-serial-name | convert-equip-name | equip-name-format }}</div>
         <div class="amulet"><span class="fake-title" :data-msg="sword.item_id | amulet-name" ><img v-if="sword.item_id == 1 || sword.item_id == 2" :src="sword.item_id | amulet-name | amulet-pattern" class="type_ico" height="12px"><span v-else>-</span></span></div>
         <div class="level">Lv.{{ sword.level }}&nbsp;<small>(next {{ sword.nextExp }})</small></div>
-        <div style="font-size:10px;">True Mobility：<span class="fake-title" data-msg="Horse✔️">{{sword.serial_id | real-mobile-horse}}</span>｜<span class="fake-title" data-msg="Horse🚫">{{sword.serial_id | real-mobile}}</span></div>
+        <div style="font-size:10px;">True Mobility：<span class="fake-title" data-msg="Horse">{{sword.serial_id | real-mobile-horse}}</span>｜<span class="fake-title" data-msg="No Horse">{{sword.serial_id | real-mobile}}</span></div>
         <div class="hp">
           <div style="position:absolute; width:38%">
             <span style="font-size:12px; color:white;">{{ sword.hp }}</span> <span style="font-size:10px; color:white;">/ {{ sword.hp_max }}</span>

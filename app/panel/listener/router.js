@@ -636,8 +636,9 @@ define((require, exports, module) => {
 
     static ['login/start'] (content) {
       store.commit('player/updatePlayer', {
-        updateData: _.pick(content, ['name', 'level'])
+        updateData: _.pick(content, ['name', 'level', 'exp', 'forge_slot', 'repair_slot', 'created_at'])
       })
+      
 
       let EvoCont = content.evolution.back
       store.commit('evolution/updateEvolution', {
