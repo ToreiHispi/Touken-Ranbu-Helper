@@ -11,7 +11,7 @@ chrome.devtools.panels.create(
       message: {
         title: 'Welcome to ~TKRB Helper~',
         message: 'Please find the new "~*TKRBH*~" tab in the Developer Tools panel.',
-        context: 'Build version：2.1.2'
+        context: 'Build version：2.2.0'
       }
     })
   }

@@ -51,6 +51,9 @@ define((require, exports, module) => {
       },
       get prev_exp(){
         return _.get(TRHMasterData.getMasterData('UserLevel'), [this.level, 'exp'], 0)
+      },
+      get lvlup_exp(){
+        return _.get(TRHMasterData.getMasterData('UserLevel'), [(this.level + 1), 'exp'], 0)
       }
     }
   }
