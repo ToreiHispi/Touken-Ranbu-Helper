@@ -304,7 +304,7 @@ define((require, exports, module) => {
       if (SName.indexOf('·🥝')>-1) {
         suffix = SName[SName.indexOf('·')] + '🥝'
       }
-      if (SName == "Heshikiri Hasebe" || SName == "Yamabangiri Chogi" || SName == "Ichimonji Norimune") {
+      if (SName == "Heshikiri Hasebe" || SName == "Yamanbagiri Chogi" || SName == "Ichimonji Norimune") {
         return SName.split(" ")[1] + suffix
       }
       return SName.split(" ")[0] + suffix

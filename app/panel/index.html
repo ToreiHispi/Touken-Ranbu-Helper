@@ -213,7 +213,7 @@
           </div>
         </div>
         <div v-else-if="battle.scout.enemy[0]!=null && battle.scout.enemy[0]!=0">
-          <div v-for="enemy_sword_id in battle.scout.enemy" v-if="enemy_sword_id!=null && enemy_sword_id!=0" class="fake-title" :data-msg="enemy_sword_id | sword-name" style="margin:2px; width:100px;">
+          <div v-for="enemy_sword_id in battle.scout.enemy" v-if="enemy_sword_id!=null && enemy_sword_id!=0" style="margin:2px; width:100px;">
             <div class="fake-title" :data-msg="enemy_sword_id | sword-name">
               <img :src="enemy_sword_id | enemy-sword-pattern" :alt="enemy_sword_id" class="enemyPattern">
             </div>
