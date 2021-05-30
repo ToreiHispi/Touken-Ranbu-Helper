@@ -1,0 +1,38 @@
+{
+  "name": "Touken Ranbu Helper",
+  "manifest_version": 2,
+  "version": "2.2.1",
+  "devtools_page": "app/panel/init/init.html",
+  "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval'; connect-src *; frame-src *;",
+  "web_accessible_resources":
+  [
+    "*"
+  ],
+  "background": {
+    "scripts": ["vendor/lodash.js", "bridge/inject.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://pc-play.games.dmm.com/play/tohken/*","*://*.johren.net/games/tohken-en/play/*"],
+      "js": ["bridge/detect.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "browser_action": 
+    {
+        "default_icon": "static/icon_128.png",
+        "default_title": "Touken Ranbu Helper",
+        "default_popup": "app/panel/init/popup.html"
+    },
+  "icons": {
+    "128": "static/icon_128.png"
+  },
+  "permissions": [
+    "*://pc-play.games.dmm.com/play/tohken/*",
+    "*://*.johren.net/games/tohken-en/play/*",
+    "*://*.touken-ranbu.jp/*",
+    "notifications",
+    "alarms",
+    "tabs"
+  ]
+}
