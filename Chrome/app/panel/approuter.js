@@ -20,6 +20,9 @@ define((require, exports, module) => {
         localforage.setItem('PracticeLog');
         localforage.setItem('DutyLog');
         location.reload();
+      },
+      downloadEnemyLog () {
+        
       }
     }
   })

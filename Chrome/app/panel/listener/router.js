@@ -331,6 +331,32 @@ define((require, exports, module) => {
       store.commit('battle/updateBattleEnemy', {
         updateData: content.enemy
       })
+      _.each(_.values(_.get(content, ['enemy', 'party'])), (v, k) => {
+        store.commit('log/addEnemyLog', {
+          logId: `Node:${state.sally.square_id}#${state.sally.episode_id}-${state.sally.field_id}@${moment(updateData.now).unix()}`,
+          serial_id: v.serial_id,
+          sword_id: v.sword_id,
+          fatigue: v.fatigue,
+          episode_id: state.sally.episode_id,
+          field_id: state.sally.field_id,
+          layer_num: state.sally.layer_num,
+          square_id: state.sally.square_id,
+          hp: v.hp,
+          hp_max: v.hp_max,
+          level: v.level,
+          rarity: v.rarity,
+          type: v.type,
+          type_real: v.type_real,
+          name: v.name,
+          atk: v.atk,
+          def: v.def,
+          mobile: v.mobile,
+          back: v.back,
+          loyalties: v.loyalties,
+          scout: v.scout,
+          hide: v.hide
+        })
+      })
       store.commit('battle/updateBattleEnemy', {
         updateData: content.result.enemy.party.slot
       })
