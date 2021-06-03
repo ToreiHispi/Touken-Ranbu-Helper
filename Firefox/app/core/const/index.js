@@ -2,6 +2,7 @@ define((require, exports, module) => {
   return {
     SwordStyle: require('./sword/style'),
     SwordType: require('./sword/type'),
+    SwordENGType: require('./sword/type_eng'),
     SwordRange: require('./sword/range'),
     SwordInjury: require('./sword/injury'),
     SwordENGName: require('./sword/name'),
