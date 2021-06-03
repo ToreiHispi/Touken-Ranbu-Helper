@@ -37,18 +37,13 @@ define((require, exports, module) => {
     }
     // Init data from Game Resource
     static init (content, store) {
-      console.log(content)
       TRHMasterData.masterData = null
       // Convert data type
       let encodeData = atob(content)
-      console.log(encodeData)
       let convertTemp = encodeData.split('').map(x => x.charCodeAt(0))
-      console.log(convertTemp)
       let originData = new Uint8Array(convertTemp)
-      console.log(originData)
       // Pack Zlib inflate
       let inflatedData = pako.inflate(originData)
-      console.log(inflatedData)
       // Decrypt
       let decryptData = CryptoJS.AES.decrypt({
         ciphertext: CryptoJS.lib.WordArray.create(inflatedData)
@@ -58,10 +53,8 @@ define((require, exports, module) => {
           padding: CryptoJS.pad.NoPadding
         }
       )
-      console.log(decryptData)
       // Magic ?
       let jsonText = CryptoJS.enc.Utf8.stringify(decryptData)
-      console.log(jsonText)
       jsonText = jsonText.substr(0, jsonText.lastIndexOf('}') + 1)
       jsonText = jsonText.replace(/\'/g,'')
       // To Object
@@ -69,6 +62,22 @@ define((require, exports, module) => {
       //console.log(dataObj);
       // Take useful part
       TRHMasterData.masterData = dataObj
+
+      /*Object.keys(TRHMasterData.masterData).forEach((k) => {
+        console.log(`TRHMasterData.init${k}(store),`);
+      });*/
+      /*Object.entries(TRHMasterData.masterData).forEach(([k, v]) => {
+        console.log(k)
+        if (k=='PowerfulTextMaster') {
+          console.log(v);
+        }
+        v.split('\n')
+        .map((line) => {
+          let arr = line.split(',')
+          //console.log(arr);
+        })
+      });*/
+
       // level_master
       TRHMasterData.UserLevel = null
       // sword_level_master
@@ -97,7 +106,7 @@ define((require, exports, module) => {
         TRHMasterData.initFieldSquareMaster(store),
         TRHMasterData.initEventMaster(store),
         TRHMasterData.initEventLayerMaster(store),
-        TRHMasterData.initEventSquareMaster(store)
+        TRHMasterData.initEventSquareMaster(store),
       ]).then(() => {
         console.log('done', store)
       })

@@ -331,6 +331,33 @@ define((require, exports, module) => {
       store.commit('battle/updateBattleEnemy', {
         updateData: content.enemy
       })
+      let sally = _.get(store, ['state', 'sally'], {})
+      _.each(_.values(_.get(content, ['enemy', 'party'])), (v, k) => {
+        store.commit('log/addEnemyLog', {
+          logId: `Node:${sally.square_id}#${sally.episode_id}-${sally.field_id}@${moment(Date.now()).unix()}`,
+          serial_id: v.serial_id,
+          sword_id: v.sword_id,
+          fatigue: v.fatigue,
+          episode_id: sally.episode_id,
+          field_id: sally.field_id,
+          layer_num: sally.layer_num,
+          square_id: sally.square_id,
+          hp: v.hp,
+          hp_max: v.hp_max,
+          level: v.level,
+          rarity: v.rarity,
+          type: v.type,
+          type_real: v.type_real,
+          name: v.name,
+          atk: v.atk,
+          def: v.def,
+          mobile: v.mobile,
+          back: v.back,
+          loyalties: v.loyalties,
+          scout: v.scout,
+          hide: v.hide
+        })
+      })
       store.commit('battle/updateBattleEnemy', {
         updateData: content.result.enemy.party.slot
       })
@@ -448,6 +475,14 @@ define((require, exports, module) => {
       appRouter.push({path:'/basic'})
       store.commit('config/updateConfig',{
         activityShow: 'default'
+      })
+      Object.values(TRHMasterData.Sword).forEach(v => {
+        if (v.swordId>=100000) {
+          store.commit('enemies/updateEnemy',{
+            swordId: v.swordId,
+            updateData: v
+          })
+        }
       })
     }
 

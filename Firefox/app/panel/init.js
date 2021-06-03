@@ -8,6 +8,7 @@ define((require, exports, module) => {
   
   // Load Master Data
   TRHMasterData.load(store)
+  console.log(store);
 
   // Start Request Listener
   TRHRequestListener.init(store)
@@ -67,6 +68,21 @@ define((require, exports, module) => {
     methods: {
       close (n) {
         n.hidden = true
+      }
+    }
+  })
+
+  Vue.component('start-up', {
+    template: '#start-up-template',
+    data (){
+      return {
+        show: true
+      }
+    },
+    computed: Vuex.mapState(['start-up']),
+    methods: {
+      dismissNotice (s) {
+        this.show = false
       }
     }
   })
@@ -184,6 +200,11 @@ define((require, exports, module) => {
         if (data) _.each(data, v => store.commit('log/addDutyLog', v))
       })
 
+      localforage.getItem('EnemyLog').then((data) => {
+        //console.log(data)
+        if (data) _.each(data, v => store.commit('log/addEnemyLog', v))
+      })
+
       localforage.getItem('Resource').then((data) => {
         if (data) store.commit('resource/updateResource', {
           updateData: data
@@ -200,6 +221,13 @@ define((require, exports, module) => {
       localforage.getItem('Swords').then((data) => {
         if (data && data.serial) _.each(data.serial, v => store.commit('swords/updateSword', {
           serialId: v.serial_id,
+          updateData: v
+        }))
+      })
+
+      localforage.getItem('Enemies').then((data) => {
+        if (data && data.id) _.each(data.id, v => store.commit('enemies/updateEnemy', {
+          swordId: v.swordId,
           updateData: v
         }))
       })

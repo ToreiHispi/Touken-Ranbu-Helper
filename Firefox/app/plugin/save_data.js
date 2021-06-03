@@ -28,6 +28,10 @@ define((require, exports, module) => {
           return localforage.setItem('Duty', state.duty)
         case 'evolution/updateEvolution':
           return localforage.setItem('Evolution',state.evolution)
+        case 'log/addEnemyLog':
+          return localforage.setItem('EnemyLog', state.log.enemy)
+        case 'enemies/updateEnemy':
+          return localforage.setItem('Enemies', state.enemies)
       }
     })
   }

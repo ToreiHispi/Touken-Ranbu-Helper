@@ -19,10 +19,26 @@ define((require, exports, module) => {
         localforage.setItem('ForgeLog');
         localforage.setItem('PracticeLog');
         localforage.setItem('DutyLog');
+        localforage.setItem('EnemyLog');
         location.reload();
       },
-      downloadEnemyLog () {
-        
+      saveEnemyBaseStats (name) {
+        store.commit('enemies/updateEnemies', {
+
+        })
+        if (name='Enemies') {
+          Enemies="\"No\",\"Name\",\"Rarity\",\"Type\",\"Level\",\"Survival/HP\",\"Impact/ATK\",\"Leadership\",\"Mobility\",\"Impulse/FOR\",\"Scouting/RCN\",\"Camouflage/STH\",\"Killing Blow/HST\""
+          _.forEach(_.get(store.state,['enemies','id']), function(_this){
+            Enemies += "\n\"'"+_this.sword_id+"\",\"'"+_this.name+"\",\"'"+_this.rarity+"\",\"'"+_this.typeName+"\",\"'"+"\",\"'"+_this.level+"\",\"'"+_this.hp+"/"+_this.hp_max + "\",\"'" + _this.atk + "\",\"'" + _this.def +"\",\"'"+_this.mobile+"\",\"'"+_this.back+"\",\"'"+_this.scout+"\",\"'"+_this.hide+"\",\"'"+_this.loyalties+"\",\"'" + "\""
+          })
+          blob = new Blob([Enemies], {
+            type: "text/plain;charset=utf-8"
+          });
+          saveAs(blob, "TRHEnemies" + (Date.now()) + ".csv");
+        }
+      },
+      saveEnemyStatsLog () {
+
       }
     }
   })

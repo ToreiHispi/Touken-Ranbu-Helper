@@ -9,13 +9,14 @@
 <body>
   <div id="app">
     <!--<debug-tools></debug-tools>-->
+    <start-up></start-up>
+    
     <div class="sidebar">
       <!-- Player Info -->
       <player></player>
       <!-- Activity -->
       <activity></activity>
-      
-    </div>
+      </div>
     <div class="main-content">
       <div class="party-buttons">
         <div v-if="party.parties[i]" v-for="i in 4" :key="i" class="party-button hover" :class="config.partySelected==i ? 'selected':'' + party.parties[i].status==2 ? ' conquest':''" @click="config.partySelected=i">{{i}}</div>
@@ -76,7 +77,16 @@
       </div>
       </transition-group>
     </div>
-    </script>
+  </script>
+
+  <script id="start-up-template" type="text/template">
+    <div id="start-up" class="notice-block" style="width: 400px; position: absolute; bottom: 0px; right: 2px; z-index: 2000;" v-if="show" @click="dismissNotice(this)">
+      <p class="notice-message" style="font-size: 13px;">
+      If your Saniwa Level and EXP are showing up as 0 or less, 
+      then you need to go the "Records" in order to have the tool sync your Saniwa account info.<br />
+      This will also unlock your Forge and Repair beds for viewing within the side panel.</p>
+    </div>
+  </script>
 
   <script id="player" type="text/template">
     <div class="player">
@@ -252,8 +262,9 @@
         <div>Kiwame Notification： <config-switch attr="evolution_notice" /></div>
       </div>
       <!--<div class="title"><small>Download Data</small></div>
-      <div align="center"><button style="text-align: center" @click="downloadEnemyLog()">Enemy Stats</button></div>-->
-      
+      <div align="center"><button style="text-align: center" @click="saveEnemyBaseStats('Enemies')">Enemy Base Stats</button></div>-->
+      <!--<div class="title"><small>Download Data</small></div>
+      <div align="center"><button style="text-align: center" @click="saveEnemyStatsLog()">Enemy Stats Log</button></div>-->
       <div class="title"><small>Clear Data</small></div>
       <div align="center"><button style="text-align: center" @click="removeLog()">Erase</button></div>
     </div>
