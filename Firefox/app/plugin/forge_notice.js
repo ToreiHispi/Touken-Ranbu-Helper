@@ -27,19 +27,9 @@ define((require, exports, module) => {
                   if(state.config.forge_notice == true){  
                     if(getSwordId && getSwordId!='unknown'){
                       store.dispatch('notice/addNotice', {
-                        title: `Forge Result: ${swordName}`,
-                        message: time.isBefore() ? "It's done!" : 'Please wait patiently or use a Help Token.',
+                        title: getSwordId ? `Forge Result: ${swordName}` : `Forging New Sword`,
+                        message: time.isBefore() ? "Please enter the forge to collect your sword." : 'Please wait patiently or use a Help Token.',
                         context: `End Time: ${time.format('HH:mm:ss')}`,
-                        tag: getSwordId,
-                        renotify: true,
-                        swordBaseId: getSwordId,
-                        icon: `static/sword/${getSwordId}.png`
-                      })
-                    } else {
-                      store.dispatch('notice/addNotice', {
-                        title: `Forging New Sword`,
-                        message: 'You need to re-enter the Forge to see the sword prediction.',
-                        context: `End Time： ${time.format('HH:mm:ss')}`,
                         tag: getSwordId,
                         renotify: true,
                         swordBaseId: getSwordId,

@@ -55,6 +55,7 @@ define((require, exports, module) => {
       forge: require('./state/forge'),
       player: require('./state/player'),
       equip: require('./state/equip'),
+      enemies: require('./state/enemies'),
       battle: require('./state/battle'),
       sally: require('./state/sally'),
       notice: require('./state/notice'),

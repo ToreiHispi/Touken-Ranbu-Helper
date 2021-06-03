@@ -60,16 +60,12 @@ define((require, exports, module) => {
           }
         } else {
           if(request.request.url.match(/https?:\/\/dovs9u514acja\.cloudfront\.net\/d\/ja\/m_(.*?)\.bin/)) {
-            console.log("Master")
             request.getContent((content, encoding) => {
-              console.log("Master init",encoding)
               TRHMasterData.init(content, store)
             })
-          } //For EN Server which has a different address for master data location
+          } //For EN Server
           else if (request.request.url.match(/https?:\/\/di8gqwgwl5tav\.cloudfront\.net\/d\/en\/m_(.*?)\.bin/)) {
-            console.log("Master")
             request.getContent((content, encoding) => {
-              console.log("Master init",encoding)
               TRHMasterData.init(content, store)
             })
           }

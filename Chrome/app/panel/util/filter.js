@@ -298,6 +298,44 @@ define((require, exports, module) => {
   })
   
   exports.convertSwordName = Vue.filter('convert-sword-name', (SName) => {
+    /*let debugName =  _.get(TRHMasterData.getMasterData('Sword'), [48, 'name'], '-') + (_.get(TRHMasterData.getMasterData('Sword'), [48, 'symbol'], 0) === 2 ? '·🥝' : '')
+    console.log(debugName)
+    if (/^[A-Za-z]+/.test(debugName)) {
+      let suffix = ""
+      
+      if (debugName.indexOf('·🥝')>-1) {
+        suffix = debugName[debugName.indexOf('·')] + '🥝'
+      }
+      if (debugName == "Heshikiri Hasebe" || debugName == "Yamanbagiri Chogi" || debugName == "Ichimonji Norimune") {
+        console.log(debugName.split(" ")[1] + suffix)
+      } else if (debugName.indexOf(' ')>-1){
+        console.log(debugName.split(" ")[0] + suffix)
+      }
+      console.log(debugName.split(" ")[0])
+    } else {
+    //Debugging JP Names
+    let debugswordID = (_.find(TRHMasterData.getMasterData('Sword'), ['name', debugName.replace('·🥝','')]) ? _.find((TRHMasterData.getMasterData('Sword')), ['name', debugName.replace('·🥝','')])['swordId'] : 0 )
+    //The _.find() method will only return the first occuring name (ie non-kiwame/pre-toku).
+    if (debugName.indexOf('·🥝')>-1) {
+      //Because Hige and Hiza have separate Toku cards
+      if (debugswordID==107){
+        debugswordID=111
+      }
+      else if (debugswordID==112){
+        debugswordID=115
+      }
+      else {debugswordID += 1}
+    }
+    let debugname = ""
+    if (TRH.SwordENGName[String(debugswordID)]) {
+      debugname = (debugswordID ? TRH.SwordENGName[String(debugswordID)][String(debugswordID)] + (_.get(TRHMasterData.getMasterData('Sword'), [debugswordID, 'symbol'], 0) === 2 ? '·🥝' : '') : '')
+    }
+    else {
+      debugname = debugName
+    }
+    console.log(debugswordID ? debugname : '-')
+    }*/
+
     //For EN Server on Johren.net which uses Latin-based character names, so no need to convert
     if (/^[A-Za-z]+/.test(SName)) {
       let suffix = ""
@@ -316,10 +354,20 @@ define((require, exports, module) => {
     if (SName=="None" || SName=='空') {
       return SName
     }
+
     let swordID = (_.find(TRHMasterData.getMasterData('Sword'), ['name', SName.replace('·🥝','')]) ? _.find((TRHMasterData.getMasterData('Sword')), ['name', SName.replace('·🥝','')])['swordId'] : 0 )
     //The _.find() method will only return the first occuring name (ie non-kiwame/pre-toku).
     if (SName.indexOf('·🥝')>-1) {
-      swordID += 1
+      //Because Hige and Hiza have separate Toku cards
+      if (swordID==107){
+        swordID=111
+      }
+      else if (swordID==112){
+        swordID=115
+      }
+      else {
+        swordID += 1
+      }
     }
     let name = ""
     if (TRH.SwordENGName[String(swordID)]) {
