@@ -23,9 +23,6 @@ define((require, exports, module) => {
         location.reload();
       },
       saveEnemyBaseStats (name) {
-        store.commit('enemies/updateEnemies', {
-
-        })
         if (name='Enemies') {
           Enemies="\"No\",\"Name\",\"Rarity\",\"Type\",\"Level\",\"Survival/HP\",\"Impact/ATK\",\"Leadership\",\"Mobility\",\"Impulse/FOR\",\"Scouting/RCN\",\"Camouflage/STH\",\"Killing Blow/HST\""
           _.forEach(_.get(store.state,['enemies','id']), function(_this){
