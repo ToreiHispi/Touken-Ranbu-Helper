@@ -8,7 +8,7 @@ define((require, exports, module) => {
         let slot = _.get(state, ['forge', 'slot', slotNo])
         let getSwordId = mutation.payload.updateData.sword_id
         let time = moment(parseValues(mutation.payload.updateData.finished_at))
-        let swordName = _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], '') == '' ? 'Not yet obtained' : (TRH.SwordENGName[String(getSwordId)] ? TRH.SwordENGName[String(getSwordId)]['full'] : _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], 'None'))
+        let swordName = /^[A-Za-z]+/.test(_.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], '')) ? _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], '') : _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], '') == '' ? 'Not yet obtained' : (TRH.SwordENGName[String(getSwordId)] ? TRH.SwordENGName[String(getSwordId)]['full'] : _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], 'None'))
         let logId = `${slotNo}#${time.unix()}`
         store.commit('log/addForgeLog', {
           logId,

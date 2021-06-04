@@ -24,6 +24,10 @@ define((require, exports, module) => {
         localforage.setItem('EnemyLog');
         location.reload();
       },
+      removeEnemyLog() {
+        localforage.setItem('EnemyLog');
+        location.reload();
+      },
       saveEnemyBaseStats (name) {
         if (name='Enemies') {
           Enemies="\"No\",\"Name\",\"Rarity\",\"Type\",\"Survival/HP\",\"Impact/ATK\",\"Leadership\",\"Mobility\",\"Impulse/FOR\",\"Scouting/RCN\",\"Camouflage/STH\",\"Killing Blow/HST\""
