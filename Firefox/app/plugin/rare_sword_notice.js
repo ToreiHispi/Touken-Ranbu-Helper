@@ -16,7 +16,7 @@ define((require, exports, module) => {
             console.log("not rare!")
             return
           }
-          let swordName = _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], 'None') == 'None' ? 0 : (TRH.SwordENGName[getSwordId] ? TRH.SwordENGName[getSwordId][getSwordId] : _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], '-'))
+          let swordName = (/^[A-Za-z]+/.test(_.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], 'None')) ? _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], 'None') : _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], 'None') == 'None' ? 0 : (TRH.SwordENGName[getSwordId] ? TRH.SwordENGName[getSwordId][getSwordId] : _.get(TRHMasterData.getMasterData('Sword'), [getSwordId, 'name'], '-')))
           console.log(swordName)
           let timeout = _.get(state, ['config', 'timeout'], 3)*1000
           if (timeout<3000){

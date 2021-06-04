@@ -333,9 +333,8 @@ define((require, exports, module) => {
       })
       let sally = _.get(store, ['state', 'sally'], {})
       _.each(_.values(_.get(content, ['enemy', 'party'])), (v, k) => {
-        console.log(v)
         store.commit('log/addEnemyLog', {
-          logId: `ID:${v.serial}#${sally.episode_id}-${sally.field_id}-${sally.square_id}@${moment(Date.now()).unix()}`,
+          logId: `ID:${v.serial_id}#${sally.episode_id}-${sally.field_id}-${sally.square_id}@${moment(Date.now()).unix()}`,
           serial_id: v.serial_id,
           sword_id: v.sword_id,
           fatigue: v.fatigue,
@@ -479,13 +478,13 @@ define((require, exports, module) => {
       })
       Object.values(TRHMasterData.Sword).forEach(v => {
         if (v.swordId>=100000) {
-          console.log(v)
           store.commit('enemies/updateEnemy',{
             swordId: v.swordId,
             updateData: v
           })
         }
       })
+      console.log(_.get(store, ['state', 'log', 'enemy'], {}))
     }
 
     static ['home/leave'] (content) {

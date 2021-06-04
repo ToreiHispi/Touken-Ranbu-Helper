@@ -263,9 +263,11 @@
       </div>
       <div class="title"><small>Download Data</small></div>
       <div align="center"><button style="text-align: center" @click="saveEnemyBaseStats('Enemies')">Enemy Base Stats</button></div>
-      <div align="center"><button style="text-align: center" @click="saveEnemyStatsLog('Enemies')">Enemy Stats Log</button></div>
-      <div class="title"><small>Clear Data</small></div>
+      <div align="center"><button style="text-align: center" @click="saveEnemyStatsLog('Enemies')">Enemy Log</button></div>
+      <div class="title"><small>Clear Log Data</small></div>
       <div align="center"><button style="text-align: center" @click="removeLog()">Erase</button></div>
+      <!--For Debugging purposes-->
+      <!--<div align="center"><button style="text-align: center" @click="removeEnemyLog()">Erase Enemy Log</button></div>-->
     </div>
     <div v-else-if="config.activityShow=='album'">
       <div class="title"><small>Touken Gallery</small></div>

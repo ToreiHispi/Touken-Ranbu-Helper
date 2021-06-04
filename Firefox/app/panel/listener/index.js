@@ -20,7 +20,6 @@ define((require, exports, module) => {
                 .split('&')
                 .map(o => o.split('='))
               : {}
-              console.log("index.js");
             request.getContent((content, encoding) => {
               let jsonObj = JSON.parse(content) || {}
               jsonObj['postData'] = _.isArray(postData) ? _.fromPairs(postData) : postData

@@ -7,9 +7,9 @@ define((require, exports, module) => {
           let serial_id = mutation.payload.updateData.back[0] && mutation.payload.updateData.back[0].serial_id
           if (!serial_id) return
           let finished_at = moment(parseValues(mutation.payload.updateData.back.finished_at))
-          console.log(finished_at)
           let sword_id = _.get(state, ['swords', 'serial', serial_id, 'sword_id'], 0)
-          let sword_name = _.get(state, ['swords', 'serial', serial_id, 'name'], '-') == '-' ? '-' : (TRH.SwordENGName[sword_id] ? TRH.SwordENGName[sword_id][sword_id] : _.get(state, ['swords', 'serial', serial_id, 'name'], '-'))
+          let sword_name = /^[A-Za-z]+/.test(_.get(state, ['swords', 'serial', serial_id, 'name'], '-')) ? _.get(state, ['swords', 'serial', serial_id, 'name'], '-') : (_.get(state, ['swords', 'serial', serial_id, 'name'], '-') == '-' ? '-' : (TRH.SwordENGName[sword_id] ? TRH.SwordENGName[sword_id][sword_id] : _.get(state, ['swords', 'serial', serial_id, 'name'], '-')))
+          console.log(sword_name)
           if(state.evolution.back[0].isIntervalSet == false || state.evolution.back[0].isIntervalSet == null){
             let check = setInterval(function isEvolutionFinished(){
               state.evolution.back[0].isIntervalSet = true
