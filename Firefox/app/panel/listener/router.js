@@ -484,7 +484,7 @@ define((require, exports, module) => {
           })
         }
       })
-      console.log(_.get(store, ['state', 'log', 'enemy'], {}))
+      console.log(_.get(store, ['state'], {}))
     }
 
     static ['home/leave'] (content) {
@@ -532,6 +532,26 @@ define((require, exports, module) => {
       }
     }
     static ['sally/eventsally'] (content) {
+      let evcont = content.postData
+      console.log(content,evcont);
+      let EID = 0
+      if (evcont.event_id!= null) {
+        EID = parseInt('-' + evcont.event_id)
+      }
+
+      store.commit('event/updateEventID', {
+        event_id: EID
+      })
+
+      let event_info = {
+        episodeId: EID ? EID : null,
+        name: _.get(TRHMasterData.getMasterData('Event'), [EID, 'name'], null),
+        type: _.get(TRHMasterData.getMasterData('Event'), [EID, 'type'], null)
+      }
+      store.commit('event/updateEventType', {
+        updateData: event_info
+      })
+
       let eventContent = {
         episode_id: null,
         field_id: null,
@@ -675,6 +695,23 @@ define((require, exports, module) => {
       console.log(_.pick(content, ['name', 'level', 'exp', 'forge_slot', 'repair_slot', 'created_at']))
       store.commit('player/updatePlayer', {
         updateData: _.pick(content, ['name', 'level', 'exp', 'forge_slot', 'repair_slot', 'created_at'])
+      })
+
+      let EID = 0
+      if (content.event_id) {
+        EID = content.event_id*(-1)
+      }
+      store.commit('event/updateEventID', {
+        event_id: EID
+      })
+      
+      let event_info = {
+      episodeId: EID ? EID : 0,
+      name: _.get(TRHMasterData.getMasterData('Event'), [EID, 'name'], ' '),
+      type: _.get(TRHMasterData.getMasterData('Event'), [EID, 'type'], 0)
+      }
+      store.commit('event/updateEventType', {
+        updateData: event_info
       })
       
 

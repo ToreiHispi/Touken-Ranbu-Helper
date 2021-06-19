@@ -65,7 +65,7 @@ define((require, exports, module) => {
 
       /*Object.keys(TRHMasterData.masterData).forEach((k) => {
         console.log(`TRHMasterData.init${k}(store),`);
-      });*/
+      });
       /*Object.entries(TRHMasterData.masterData).forEach(([k, v]) => {
         console.log(k)
         if (k=='PowerfulTextMaster') {

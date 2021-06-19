@@ -65,6 +65,7 @@ define((require, exports, module) => {
       album: require('./state/album'),
       practice_enemy: require('./state/practice_enemy'),
       evolution: require('./state/evolution'),
+      event: require('./state/event'),
       debug: require('./state/debug')
     },
     plugins: _.values(Plugin)

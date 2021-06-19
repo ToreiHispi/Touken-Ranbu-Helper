@@ -306,7 +306,7 @@ define((require, exports, module) => {
       if (debugName.indexOf('·🥝')>-1) {
         suffix = debugName[debugName.indexOf('·')] + '🥝'
       }
-      if (debugName == "Heshikiri Hasebe" || debugName == "Yamanbagiri Chogi" || debugName == "Ichimonji Norimune") {
+      if (debugName == "Heshikiri Hasebe" || debugName == "Yamanbagiri Chougi" || debugName == "Ichimonji Norimune") {
         console.log(debugName.split(" ")[1] + suffix)
       } else if (debugName.indexOf(' ')>-1){
         console.log(debugName.split(" ")[0] + suffix)
@@ -342,7 +342,7 @@ define((require, exports, module) => {
       if (SName.indexOf('·🥝')>-1) {
         suffix = SName[SName.indexOf('·')] + '🥝'
       }
-      if (SName == "Heshikiri Hasebe" || SName == "Yamanbagiri Chogi" || SName == "Ichimonji Norimune") {
+      if (SName == "Heshikiri Hasebe" || SName == "Yamanbagiri Chougi" || SName == "Ichimonji Norimune") {
         return SName.split(" ")[1] + suffix
       }
       else if (SName.indexOf(' ')>-1){
@@ -460,7 +460,7 @@ define((require, exports, module) => {
   
   exports.convertEnemyName = Vue.filter('convert-enemy-name', (EName) => {
     //Suffixes
-    let rank = EName.replace('_丙',' C').replace('_乙',' B').replace('_甲',' A').replace('_放免','').replace('(甲)','')
+    let rank = EName.replace('_丙',' C').replace('_乙',' B').replace('_甲',' A').replace('_放免','Houmen').replace('(甲)','')
     
     if (rank.indexOf('_下士') > -1 || rank.indexOf('_上士') >  -1) {
       let list = rank.split('_')

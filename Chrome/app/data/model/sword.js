@@ -71,6 +71,7 @@ define((require, exports, module) => {
         }
         if (!this.inBattle && fatigue < TRH.FATIGUE.VALUE.NORMAL && !_.isUndefined(this.recovered_at) && this.status!=3 && !this.isEnemy) {
           let now = Math.floor(Date.now() / 1000)
+          //console.log(this.serial_id,this.sword_id,now,this.recovered_at)
           let recovered = Math.floor(this.recovered_at / 1000)
           fatigue = fatigue + Math.floor((now - recovered) / 180) * 3
           fatigue = fatigue > TRH.FATIGUE.VALUE.NORMAL ? TRH.FATIGUE.VALUE.NORMAL : fatigue

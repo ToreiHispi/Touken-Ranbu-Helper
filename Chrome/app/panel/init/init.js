@@ -10,8 +10,8 @@ chrome.devtools.panels.create(
       type: 'notify',
       message: {
         title: 'Welcome to ~TKRB Helper~',
-        message: 'Please find the new "~*TKRBH*~" tab in the Developer Tools panel.',
-        context: 'Build version：2.2.3'
+        message: 'Please find the new "~Tourabu~" tab in the Developer Tools panel.',
+        context: 'Build version：2.2.4'
       }
     })
   }
