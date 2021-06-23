@@ -64,13 +64,11 @@ define((require, exports, module) => {
       TRHMasterData.masterData = dataObj
 
       /*Object.keys(TRHMasterData.masterData).forEach((k) => {
-        console.log(`TRHMasterData.init${k}(store),`);
+        console.log(k);
       });
-      /*Object.entries(TRHMasterData.masterData).forEach(([k, v]) => {
-        console.log(k)
-        if (k=='PowerfulTextMaster') {
-          console.log(v);
-        }
+      /*
+      Object.entries(TRHMasterData.masterData).forEach(([k, v]) => {
+        console.log(k,':',v.split('\n'))
         v.split('\n')
         .map((line) => {
           let arr = line.split(',')

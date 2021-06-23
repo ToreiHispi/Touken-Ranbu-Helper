@@ -195,7 +195,7 @@ a {
   height: 55px;
   clear: both;
 }
-.conquest{
+.conquest, .sortie{
   height: 55px;
 }
 .conquest-item{
@@ -280,6 +280,9 @@ a {
 }
 .party-buttons .party-button.conquest{
   border: 2px solid #6d57b3;
+}
+.party-buttons .party-button.sortie{
+  border: 2px solid #630f00;
 }
 .party-member-list{
   min-height: 300px;

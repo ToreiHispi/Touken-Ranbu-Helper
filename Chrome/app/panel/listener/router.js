@@ -484,7 +484,7 @@ define((require, exports, module) => {
           })
         }
       })
-      console.log(_.get(store, ['state'], {}))
+      //console.log(_.get(store, ['state'], {}))
     }
 
     static ['home/leave'] (content) {
@@ -692,7 +692,7 @@ define((require, exports, module) => {
     }
 
     static ['login/start'] (content) {
-      console.log(_.pick(content, ['name', 'level', 'exp', 'forge_slot', 'repair_slot', 'created_at']))
+      //console.log(_.pick(content, ['name', 'level', 'exp', 'forge_slot', 'repair_slot', 'created_at']))
       store.commit('player/updatePlayer', {
         updateData: _.pick(content, ['name', 'level', 'exp', 'forge_slot', 'repair_slot', 'created_at'])
       })
