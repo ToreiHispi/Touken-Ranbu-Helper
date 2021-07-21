@@ -446,7 +446,7 @@ define((require, exports, module) => {
   })
 
   exports.equipNameAbbreviate = Vue.filter('equip-abbrev', (EqName) => {
-    let name = EqName.replace("Archer","Arch").replace("Cavalry","Cav").replace("Infantry","Inf").replace("Shieldman","Shld").replace("Elite","Elt").replace("Pikeman","Pike").replace("Gunner","Gun").replace("Slingshooter","Sling")
+    let name = EqName.replace("Archer","Arch").replace("Cavalry","Cav").replace("Infantry","Inf").replace("Shieldman","Shld").replace("Elite","Elt").replace("Pikeman","Pike").replace("Gunner","Gun").replace("Slingshooter","Sling").replace("Hydromen","Hydro")
     return name.replace("Heavy ","H").replace("Light ","L").replace("Spearman","Spr").replace("Musketeer","Mskt").replace("Catapult","Cat").replace("Water Artillery","Water").replace("Bean Thrower","Bean").replace("Demon Troop","Oni")
   })
   

@@ -42,13 +42,18 @@
     <notice-content></notice-content>
     <div class="check-data" v-if="(!_.every(dataLoaded)) || _.isEmpty(swords.serial)">
       <div class="check-title">Tohken Ranbu Helper · Initialization</div>
-      <div class="check-item">
+      <div class="check-item" v-if="_.every(dataLoaded)">
         <div class="check-item-title">
-          <span v-if="_.every(dataLoaded)">[Acquired]</span>
-          <span v-else>[Wait one moment...]</span>
+          <span>[Acquired]</span>
           Master data
         </div>
-        <p>* Please refresh the game page and re-enter the game with the devtool open.</p>
+      </div>
+      <div class="check-item" v-else>
+        <div class="check-item-title">
+          <span>[Wait one moment...]</span>
+          Master data
+        </div>
+        <p>* Please refresh the game page and re-enter the game with the devtool open if the data has not been acquired once you enter the Citadel/Honmaru.</p>
       </div>
       <div class="check-item" v-if="_.every(dataLoaded)">
         <div class="check-item-title">
