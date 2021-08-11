@@ -196,6 +196,8 @@ define((require, exports, module) => {
 	'198': {'198': 'Norimune','full': 'Ichimonji Norimune'},
 	'199': {'199': 'Norimune','full': 'Ichimonji Norimune'},
 	'200': {'200': 'Murakumo','full': 'Murakumo Gou'},
-	'201': {'201': 'Murakumo','full': 'Murakumo Gou'}
+	'201': {'201': 'Murakumo','full': 'Murakumo Gou'},
+	'202': {'202': 'Himetsuru', 'full': 'Himetsuru Ichimonji'},
+	'203': {'203': 'Himetsuru', 'full': 'Himetsuru Ichimonji'}
   }
 })

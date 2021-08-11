@@ -290,7 +290,7 @@
           <tbody>
             <tr v-for='sw in album.serial' v-if="!(sw.serious_img_flg & sw.work_img_flg)">
             <td>{{ sw.sword_id }}</td>
-            <td class="fake-title" :data-msg="sw.name"><img :src="sw.sword_id | sword-pattern" class="small-pattern"></td>
+            <td class="fake-title" :data-msg="sw.name | convert-sword-name"><img :src="sw.sword_id | sword-pattern" class="small-pattern"></td>
             <td>{{ sw.serious_img_flg | not-flg }}</td>
             <td>{{ sw.work_img_flg | not-flg }}</td>
             </tr>
